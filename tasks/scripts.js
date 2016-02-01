@@ -6,34 +6,36 @@ var concat = require('gulp-concat');
 var gulpif = require('gulp-if');
 var uglify = require('gulp-uglify');
 
-var production = require('../gulpfile');
+var browserSync = require("browser-sync"),
+	reload = browserSync.reload;
 
-gulp.task('scripts', ['scripts.app', 'scripts.vendor']);
+var config = require('./config'),
+	production = config.production,
+	path = config.path;
+
+gulp.task('scripts', [ 'scripts.vendor', 'scripts.app' ]);
+
+gulp.task('scripts.vendor', function () {
+	return gulp.src(path.src.vendor)
+		.pipe(plumber())
+		.pipe(concat('vendor.js', { newLine: ';\n' }))
+		.pipe(gulpif(production, uglify()))
+		.pipe(gulp.dest(path.build.vendor))
+		.pipe(reload({ stream: true }));
+});
 
 gulp.task('scripts.app', function () {
-	return gulp.src([
-		'site/src/js/utils/*.js',
-		'site/src/js/Component.js',
-		'site/src/js/Components/*.js',
-		'site/src/js/Application.js'
-	])
+	return gulp.src(path.src.js)
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
-		.pipe(babel())
+		.pipe(babel({
+			presets: [ 'es2015' ]
+		}))
 		.pipe(concat('app.js'))
 		.pipe(gulpif(production, uglify()))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('site/assets/js/'));
+		.pipe(gulp.dest(path.build.js))
+		.pipe(reload({ stream: true }));
 });
 
-gulp.task('scripts.vendor', function () {
-	return gulp.src([
-		'site/src/vendor/jquery-1.11.3.js',
-		'site/src/vendor/moment.min.js',
-		'site/src/vendor/*.js'
-	])
-		.pipe(plumber())
-		.pipe(concat('vendor-bundle.js', { newLine: ';\n' }))
-		.pipe(gulpif(production, uglify()))
-		.pipe(gulp.dest('site/assets/js/'));
-});
+

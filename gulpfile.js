@@ -1,7 +1,4 @@
-var argv = require('yargs').argv;
-var production = argv.production !== undefined;
-
-module.exports = production;
+'use strict';
 
 var requireDir = require('require-dir');
-requireDir('./tasks', {recurse: true});
+requireDir('./tasks', { recurse: true });

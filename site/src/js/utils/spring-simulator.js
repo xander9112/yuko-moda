@@ -1,5 +1,3 @@
-var $$ = $$ || {};
-
 $$.Simulation = $$.Simulation || {};
 
 /**
@@ -103,7 +101,7 @@ $$.Simulation.SpringSimulator = function() {
 				spring._step.call();
 			}
 		}
-	}, 16);
+	}, 20);
 };
 
 $$.Simulation.SpringSimulator.prototype = {
