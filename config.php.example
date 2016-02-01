@@ -1,9 +1,0 @@
-<?php
-$url_prefix = '';
-$project_dir = '/home/ВАШ ДОМЕН/www/НАЗВАНИЕ ПРОЕКТА';
-$imageFolder = $url_prefix . '/data/images/';
-
-$dbPath = $project_dir . '/data/json/';
-
-require $project_dir . "/admin/JsonDB.class.php";
-$db = new JsonDB($dbPath);  //parameter => directory to your json files
