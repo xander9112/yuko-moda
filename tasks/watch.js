@@ -17,4 +17,6 @@ gulp.task('watch', function () {
 	gulp.watch(path.watch.styles, [ 'styles' ]);
 
 	gulp.watch(path.watch.fonts, [ 'fonts' ]);
+
+	gulp.watch(path.watch.html, [ 'html' ]);
 });

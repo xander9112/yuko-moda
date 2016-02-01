@@ -9,7 +9,7 @@ gulp.task('clean', function (callback) {
 	return del(path.clean, callback);
 });
 
-gulp.task('build', [ 'scripts', 'styles', 'images', 'fonts', 'sprite' ]);
+gulp.task('build', [ 'scripts', 'styles', 'images', 'fonts', 'sprite', 'html' ]);
 
 gulp.task('default', [ 'clean' ], function () {
 	gulp.start('build');

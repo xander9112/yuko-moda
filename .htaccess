@@ -7,6 +7,6 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !index.php$
+RewriteCond %{REQUEST_FILENAME} !index.html$
 
-RewriteRule ^([^/]*)$ /templates/$1.php [QSA,L,NC]
+RewriteRule ^([^/]*)$ /templates/$1.html [QSA,L,NC]
